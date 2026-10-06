@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MoviePicker — подбор фильмов по жанрам</title>
+  <meta name="description" content="MoviePicker — каталог фильмов: топ-20 по каждому жанру, поиск, фильтры по рейтингу и сортировка.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <!-- Тему выставляем до отрисовки, чтобы не было «мигания» -->
+  <script>
+    try { var t = localStorage.getItem("moviepicker-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script src="js/data-loader.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/modal.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержимому</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="MoviePicker — на главную">
+        <span class="logo-mark" aria-hidden="true">🎬</span>
+        <span>Movie<span class="accent">Picker</span></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="index.html" aria-current="page">Главная</a></li>
+          <li><a href="index.html#genres">Жанры</a></li>
+          <li><a href="search.html">Поиск</a></li>
+          <li><a href="about.html">О проекте</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-button" data-theme-toggle aria-label="Переключить тему">☀️</button>
+        <button type="button" class="icon-button menu-toggle" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Открыть меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <div class="container">
+
+      <!-- Приветственный блок -->
+      <section class="hero fade-in-up" aria-labelledby="hero-title">
+        <h1 id="hero-title">Не знаете, что посмотреть?<br><span class="accent">Выберите жанр.</span></h1>
+        <p>MoviePicker собирает топ-20 самых популярных фильмов в каждом жанре. Фильтруйте по рейтингу, сортируйте и открывайте подробности в один клик.</p>
+        <div class="hero-actions">
+          <button type="button" class="button button-primary" id="random-movie" disabled>
+            <span class="dice" aria-hidden="true">🎲</span> Случайный фильм
+          </button>
+          <a class="button button-secondary" href="search.html">🔍 Найти фильм</a>
+        </div>
+        <div class="hero-stats" aria-live="polite">
+          <div><strong id="stat-movies">—</strong><span>фильмов в каталоге</span></div>
+          <div><strong id="stat-genres">—</strong><span>жанров</span></div>
+          <div><strong id="stat-rating">—</strong><span>средний рейтинг</span></div>
+        </div>
+      </section>
+
+      <!-- Жанры -->
+      <section class="section" id="genres" aria-labelledby="genres-title">
+        <div class="section-header">
+          <h2 id="genres-title">Жанры</h2>
+          <p>Нажмите на жанр, чтобы увидеть топ-20 фильмов</p>
+        </div>
+        <div class="genre-grid" id="genre-grid" aria-busy="true">
+          <!-- Плитки жанров вставляются из js/main.js -->
+        </div>
+      </section>
+
+      <!-- Топ-10 -->
+      <section class="section" aria-labelledby="top-title">
+        <div class="section-header">
+          <h2 id="top-title">Топ-10 популярных фильмов</h2>
+          <p>Самые популярные фильмы во всём каталоге</p>
+        </div>
+        <div class="movie-grid" id="top-grid" aria-busy="true">
+          <!-- Карточки вставляются из js/main.js -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-current-year></span> MoviePicker</span>
+      <span>Данные: датасет Top Movies (TMDB)</span>
+    </div>
+  </footer>
+</body>
+</html>

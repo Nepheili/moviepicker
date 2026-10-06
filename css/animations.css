@@ -1,0 +1,57 @@
+/* ==========================================================================
+   MoviePicker — анимации
+   ========================================================================== */
+
+/* Появление карточек снизу вверх (класс .is-visible ставит IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity .55s ease,
+    transform .55s cubic-bezier(.2, .8, .2, 1),
+    box-shadow .25s ease,
+    border-color .25s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* После появления возвращаем быстрый ховер (без задержки) */
+.reveal.is-visible.movie-card { transition-delay: 0ms; transition-duration: .25s; }
+.reveal.is-visible.movie-card:hover { transform: scale(1.03); }
+.movie-grid.is-list .reveal.is-visible.movie-card:hover { transform: scale(1.01); }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+.fade-in-up { animation: fadeInUp .6s cubic-bezier(.2, .8, .2, 1) both; }
+
+/* Мерцание скелетона при загрузке */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton-card {
+  background-image: linear-gradient(90deg, transparent 0, rgba(255,255,255,.05) 50%, transparent 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+/* Лёгкое «покачивание» кубика у кнопки случайного фильма */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-14deg); }
+  75% { transform: rotate(14deg); }
+}
+.button:hover .dice { display: inline-block; animation: wiggle .5s ease; }
+
+/* Уважение к настройке «уменьшить движение» */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>О проекте — MoviePicker</title>
+  <meta name="description" content="О проекте MoviePicker: как устроен каталог фильмов.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <script>
+    try { var t = localStorage.getItem("moviepicker-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script src="js/data-loader.js" defer></script>
+  <script src="js/common.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Перейти к содержимому</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="MoviePicker — на главную">
+        <span class="logo-mark" aria-hidden="true">🎬</span>
+        <span>Movie<span class="accent">Picker</span></span>
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="index.html#genres">Жанры</a></li>
+          <li><a href="search.html">Поиск</a></li>
+          <li><a href="about.html" aria-current="page">О проекте</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-button" data-theme-toggle aria-label="Переключить тему">☀️</button>
+        <button type="button" class="icon-button menu-toggle" data-menu-toggle aria-controls="main-nav" aria-expanded="false" aria-label="Открыть меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <div class="container">
+      <article class="prose fade-in-up">
+        <h1>О проекте</h1>
+        <p><strong>MoviePicker</strong> помогает быстро выбрать фильм на вечер. В основе — открытый датасет Top Movies с данными TMDB: почти 10 000 фильмов с описаниями, рейтингами, популярностью и жанрами.</p>
+
+        <h2>Что умеет сайт</h2>
+        <ul class="feature-list">
+          <li><span aria-hidden="true">🎭</span>Топ-20 самых популярных фильмов в каждом из 19 жанров</li>
+          <li><span aria-hidden="true">⭐</span>Фильтр по минимальному рейтингу и три вида сортировки</li>
+          <li><span aria-hidden="true">🔍</span>Живой поиск по названию и описанию</li>
+          <li><span aria-hidden="true">🎲</span>Случайный фильм, если не хочется выбирать</li>
+        </ul>
+
+        <h2>Как считается топ</h2>
+        <p>Один фильм может относиться к нескольким жанрам — он участвует в рейтинге каждого из них. Внутри жанра фильмы упорядочены по <em>популярности</em> TMDB (по убыванию). Если в жанре меньше 20 фильмов, показываются все.</p>
+        <ul>
+          <li><strong>Рейтинг</strong> — средняя оценка зрителей (Vote_Average) от 0 до 10.</li>
+          <li><strong>Популярность</strong> — индекс TMDB, отражающий текущий интерес к фильму.</li>
+          <li><strong>Голосов</strong> — число зрителей, оценивших фильм.</li>
+        </ul>
+
+        <h2>Технологии</h2>
+        <p>Чистые HTML, CSS и JavaScript без фреймворков. Данные готовит скрипт <code>build_data.py</code>, который превращает CSV в <code>data/movies.json</code> и <code>data/genres.json</code>. Сайт работает офлайн; из интернета подгружаются только постеры фильмов.</p>
+
+        <p><a class="button button-primary" href="index.html#genres">Перейти к жанрам</a></p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span data-current-year></span> MoviePicker</span>
+      <span>Данные: датасет Top Movies (TMDB)</span>
+    </div>
+  </footer>
+</body>
+</html>
